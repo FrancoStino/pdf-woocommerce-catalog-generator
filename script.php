@@ -128,13 +128,13 @@ function handle_export_pdf_bulk_action($redirect_to, $doaction, $post_ids) {
 		xhr.open('POST', '<?php echo esc_url(admin_url('admin-ajax.php')); ?>');
 		xhr.responseType = 'blob';
 		xhr.onload = function () {
-			if (xhr.status === 200) {
+			//if (xhr.status === 200) {
 				var blob = new Blob([xhr.response], {type: 'application/pdf'});
 				var link = document.createElement('a');
 				link.href = window.URL.createObjectURL(blob);
 				link.download = '<?php echo 'Catalogo '.get_bloginfo( 'name' ).' per '; ?>' + company_name +'.pdf';
 				link.click();
-			}
+			//}
 		};
 		xhr.send(formData);
 	}
@@ -198,7 +198,7 @@ function generate_pdf_ajax() {
 	
 	$mpdf->SetDefaultFont('Poppins'); // Imposta il font di fallback predefinito
 
-	$mpdf->SetDefaultBodyCSS('background', "url('https://staging.concortesia.it/wp-content/uploads/2023/06/carta-intestata-pdf.svg')");
+	$mpdf->SetDefaultBodyCSS('background', "url('https://www.concortesia.it/wp-content/uploads/2023/07/carta-intestata-pdf.svg')");
 	$mpdf->SetDefaultBodyCSS('background-image-resize', 5);
 	$mpdf->SetDefaultBodyCSS('background-image-opacity', 0.3);
 

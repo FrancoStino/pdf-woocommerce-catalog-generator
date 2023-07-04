@@ -32,8 +32,7 @@ Il plugin fa uso delle seguenti dipendenze:
 
 Prima di installare il plugin, assicurati di avere installato [Composer](https://getcomposer.org/) sul tuo server. Quindi, esegui il seguente comando tramite terminale cPanel per installare MPDF:
 
-composer require mpdf/mpdf
-
+`composer require mpdf/mpdf`
 
 Specifica la cartella in cui desideri installare MPDF prima di eseguire il comando.
 

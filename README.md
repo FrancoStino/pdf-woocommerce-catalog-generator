@@ -30,6 +30,13 @@ Il plugin fa uso delle seguenti dipendenze:
 
 - [MPDF](https://github.com/mpdf/mpdf): Una libreria PHP per la generazione di file PDF.
 
+Prima di installare il plugin, assicurati di avere installato [Composer](https://getcomposer.org/) sul tuo server. Quindi, esegui il seguente comando tramite terminale cPanel per installare MPDF:
+
+composer require mpdf/mpdf
+
+
+Specifica la cartella in cui desideri installare MPDF prima di eseguire il comando.
+
 ## Personalizzazione
 
 Se desideri personalizzare ulteriormente il plugin, puoi modificare il codice sorgente direttamente. Assicurati di avere una buona comprensione della programmazione PHP e WordPress prima di apportare modifiche.
@@ -37,10 +44,6 @@ Se desideri personalizzare ulteriormente il plugin, puoi modificare il codice so
 ## Contributi
 
 Se desideri contribuire allo sviluppo di questo plugin, puoi inviare pull request su GitHub. Siamo aperti a miglioramenti, correzioni di bug e nuove funzionalità.
-
-## Segnalazione dei bug
-
-Se incontri dei bug durante l'utilizzo del plugin, puoi aprire un ticket nella sezione "Issues" del repository su GitHub. Fornisci una descrizione dettagliata del problema riscontrato e, se possibile, dei passaggi per riprodurlo.
 
 ## Licenza
 

@@ -34,7 +34,7 @@ Prima di installare il plugin, assicurati di avere installato [Composer](https:/
 
 `composer require mpdf/mpdf`
 
-Specifica la cartella in cui desideri installare MPDF prima di eseguire il comando.
+Specifica la cartella in cui desideri installare MPDF prima di eseguire il comando tramite `cd`.
 
 ## Personalizzazione
 

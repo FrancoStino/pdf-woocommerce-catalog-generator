@@ -4,11 +4,7 @@ Questo plugin WordPress estende le funzionalità dell'editor di WordPress aggiun
 
 ## Installazione
 
-1. Scarica il plugin come file zip.
-2. Accedi al pannello di amministrazione di WordPress.
-3. Naviga su "Plugin" e seleziona "Aggiungi nuovo".
-4. Scegli "Carica plugin" e seleziona il file zip scaricato.
-5. Attiva il plugin.
+1. Copiare all'interno del function child theme.
 
 ## Utilizzo
 

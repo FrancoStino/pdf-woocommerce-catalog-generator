@@ -42,7 +42,7 @@ function handle_export_pdf_bulk_action() {
 	$post_ids = array_map('intval', explode(',', file_get_contents($selected_products_file)));
     $redirect_to = add_query_arg('exported', count($post_ids), wp_get_referer()); // Reindirizza l'utente alla pagina precedente con un parametro "exported"
 
-	print_r($post_ids);
+	//print_r($post_ids);
 
     // Mostra il form per generare il PDF
     ?>

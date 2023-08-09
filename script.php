@@ -201,7 +201,7 @@ function generate_pdf_ajax() {
 	
 	
 	// Load MPDF library
-    require_once(get_stylesheet_directory() . '/functions/pdf-catalog-generator-woocommerce/mpdf/vendor/autoload.php');
+    require_once(get_stylesheet_directory() . '/functions/pdf-woocommerce-catalog-generator-main/mpdf/vendor/autoload.php');
     $mpdf = new \Mpdf\Mpdf();  
 	
 	$mpdf->SetDefaultFont('Poppins'); // Imposta il font di fallback predefinito

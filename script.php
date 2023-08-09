@@ -44,7 +44,6 @@ function handle_export_pdf_bulk_action() {
 
 	//print_r($post_ids);
 
-    // Mostra il form per generare il PDF
     ?>
 <form onsubmit="generate_pdf(); return false;">
 	<div style="display:flex;flex-direction: column;align-content: center;align-items: center;">
@@ -206,7 +205,7 @@ function generate_pdf_ajax() {
 	
 	$mpdf->SetDefaultFont('Poppins'); // Imposta il font di fallback predefinito
 
-	$mpdf->SetDefaultBodyCSS('background', "url('https://www.concortesia.it/wp-content/uploads/2023/07/carta-intestata-pdf.svg')");
+	//$mpdf->SetDefaultBodyCSS('background', "url('https://www.concortesia.it/wp-content/uploads/2023/07/carta-intestata-pdf.svg')");
 	$mpdf->SetDefaultBodyCSS('background-image-resize', 5);
 	$mpdf->SetDefaultBodyCSS('background-image-opacity', 0.3);
 
@@ -327,11 +326,13 @@ function generate_pdf_ajax() {
         $mpdf->WriteHTML('<table style="width:100%; border-collapse: collapse; background:#fff;">');
         foreach ($category_products as $product) {
 			// Prezzo variabile
-			$charge = ($custom_price / 100) * $product->get_price();
-			if ($operator == '-')
-				$final_price = $product->get_price() - $charge;
-			else
-				$final_price = $product->get_price() + $charge;
+			if (!empty($product->get_price())){
+				$charge = ($custom_price / 100) * $product->get_price();
+				if ($operator == '-')
+					$final_price = $product->get_price() - $charge;
+				else
+					$final_price = $product->get_price() + $charge;
+			}
 			// Immagine
             $image_url = wp_get_attachment_image_src($product->get_image_id(), 'large');
 			$mpdf->WriteHTML('<tr>');
@@ -341,7 +342,10 @@ function generate_pdf_ajax() {
 			$mpdf->WriteHTML('</td>');
 			// Colonna tabella titolo, descrizione e prezzo
 			$mpdf->WriteHTML('<td style="border: 1px solid black; padding: 15px;">');
-            $mpdf->WriteHTML('<h2>' . $product->get_name() . '</h2><hr><p>' . $product->get_short_description() . '</p><hr><h3>Prezzo: ' . number_format($final_price, 2, ',', '.') . ' € <small>IVA Esclusa</small></h3>');
+			if (!empty($product->get_price()))
+				$mpdf->WriteHTML('<h2>' . $product->get_name() . '</h2><hr><p>' . $product->get_short_description() . '</p><hr><h3>Prezzo: ' . number_format($final_price, 2, ',', '.') . ' € <small>IVA Esclusa</small></h3>');
+			else
+				$mpdf->WriteHTML('<h2>' . $product->get_name() . '</h2><hr><p>' . $product->get_short_description() . '</p>');
 			$mpdf->WriteHTML('</td>');
 			$mpdf->WriteHTML('</tr>');
         }

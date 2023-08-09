@@ -92,41 +92,44 @@ function my_delete_selected_products_file_action()
 // Aggiungi l'azione 'admin_notices' per visualizzare gli avvisi
 add_action('admin_notices', 'my_custom_admin_notices');
 
-function my_custom_admin_notices()
-{
-    // Verifica se è presente il parametro 'success' nell'URL per il salvataggio dei prodotti
-    if (isset($_GET['success_save']) && $_GET['success_save'] === 'true') { $upload_dir = wp_upload_dir();
-        echo '<div class="notice notice-success is-dismissible">
-            <p>I prodotti selezionati sono stati salvati con successo.</p>
-        </div>';
-}
-
-    // Verifica se è presente il parametro 'success_delete' nell'URL per l'eliminazione del file
-    if (isset($_GET['success_delete']) && $_GET['success_delete'] === 'true') {
-        echo '<div class="notice notice-success is-dismissible">
-            <p>Il file dei prodotti selezionati è stato eliminato con successo.</p>
-        </div>';
-    }
-
-    // Verifica se è presente il parametro 'error_delete' nell'URL per l'eliminazione del file
-    if (isset($_GET['error_delete']) && $_GET['error_delete'] === 'true') {
-        echo '<div class="notice notice-error is-dismissible">
-            <p>Non esiste alcun file in quanto già eliminato.</p>
-        </div>';
-    }
-	
-	
-	// Verifica se il file esiste per mostrare il conteggio dei prodotti
-    $upload_dir = wp_upload_dir();
-    $file_path = $upload_dir['basedir'] . '/selected_products.txt';
-
-    if (file_exists($file_path)) {
-        $content = file_get_contents($file_path);
-        $product_count = substr_count($content, ',') + 1; // Aggiungi 1 per l'ultimo prodotto
-        echo '<div class="notice notice-info">
-            <p>Il file per generare il catalogo in PDF contiene ' . $product_count . ' prodotti.</p>
-        </div>';
-    }
+function my_custom_admin_notices() {
+	$screen = get_current_screen();
+	if ($screen->base == 'edit' && $screen->post_type == 'product') {
+		
+		// Verifica se è presente il parametro 'success' nell'URL per il salvataggio dei prodotti
+		if (isset($_GET['success_save']) && $_GET['success_save'] === 'true') { $upload_dir = wp_upload_dir();
+			echo '<div class="notice notice-success is-dismissible">
+			<p>I prodotti selezionati sono stati salvati con successo.</p>
+			</div>';
+			}
+		
+		// Verifica se è presente il parametro 'success_delete' nell'URL per l'eliminazione del file
+		if (isset($_GET['success_delete']) && $_GET['success_delete'] === 'true') {
+			echo '<div class="notice notice-success is-dismissible">
+			<p>Il file dei prodotti selezionati è stato eliminato con successo.</p>
+			</div>';
+		}
+		
+		// Verifica se è presente il parametro 'error_delete' nell'URL per l'eliminazione del file
+		if (isset($_GET['error_delete']) && $_GET['error_delete'] === 'true') {
+			echo '<div class="notice notice-error is-dismissible">
+			<p>Non esiste alcun file in quanto già eliminato.</p>
+			</div>';
+		}
+		
+		
+		// Verifica se il file esiste per mostrare il conteggio dei prodotti
+		$upload_dir = wp_upload_dir();
+		$file_path = $upload_dir['basedir'] . '/selected_products.txt';
+		
+		if (file_exists($file_path)) {
+			$content = file_get_contents($file_path);
+			$product_count = substr_count($content, ',') + 1; // Aggiungi 1 per l'ultimo prodotto
+			echo '<div class="notice notice-info">
+			<p>Il file per generare il catalogo in PDF contiene ' . $product_count . ' prodotti.</p>
+			</div>';
+		}
+	}
 }
 
 
